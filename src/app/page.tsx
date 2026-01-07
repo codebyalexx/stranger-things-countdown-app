@@ -4,6 +4,9 @@ import { ZapIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import LightningStorm from "@/components/LightningStorm";
+import UpsideDownAtmosphere from "@/components/UpsideDownAtmosphere";
+
 export default function Home() {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -48,26 +51,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-black relative overflow-hidden flex items-center justify-center">
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-red-950/20 to-black"></div>
-
-      <div className="absolute inset-0 opacity-10">
-        {[...Array(50)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute bg-red-500 rounded-full animate-float"
-            style={{
-              width: Math.random() * 4 + 2 + 'px',
-              height: Math.random() * 4 + 2 + 'px',
-              left: Math.random() * 100 + '%',
-              top: Math.random() * 100 + '%',
-              animationDelay: Math.random() * 5 + 's',
-              animationDuration: Math.random() * 10 + 10 + 's',
-            }}
-          ></div>
-        ))}
-      </div>
-
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDEzOSwgMCwgMCwgMC4xKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-20"></div>
+      <LightningStorm />
+      <UpsideDownAtmosphere />
 
       <div className="relative z-10 text-center px-4">
         <div className={`transition-opacity duration-100 ${flicker ? 'opacity-50' : 'opacity-100'}`}>

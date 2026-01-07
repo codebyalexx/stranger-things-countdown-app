@@ -154,4 +154,52 @@ body {
       0 0 30px rgba(239, 68, 68, 0.3),
       inset 0 0 15px rgba(239, 68, 68, 0.15);
   }
+
+  @keyframes float-particle {
+    0% {
+      transform: translateY(0) translateX(0);
+      opacity: 0;
+    }
+
+    10% {
+      opacity: 1;
+    }
+
+    90% {
+      opacity: 1;
+    }
+
+    100% {
+      transform: translateY(-100vh) translateX(20px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes float-ash {
+    0% {
+      transform: translateY(0) translateX(0) rotate(0deg);
+      opacity: 0;
+    }
+
+    10% {
+      opacity: 0.8;
+    }
+
+    90% {
+      opacity: 0.8;
+    }
+
+    100% {
+      transform: translateY(-100vh) translateX(-50px) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  .animate-float-particle {
+    animation: float-particle linear infinite;
+  }
+
+  .animate-float-ash {
+    animation: float-ash linear infinite;
+  }
 }
