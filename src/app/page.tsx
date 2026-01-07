@@ -1,6 +1,7 @@
 "use client"
 
 import { ZapIcon } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -71,30 +72,21 @@ export default function Home() {
       <div className="relative z-10 text-center px-4">
         <div className={`transition-opacity duration-100 ${flicker ? 'opacity-50' : 'opacity-100'}`}>
           <div className="flex items-center justify-center gap-3 mb-8 animate-pulse-slow">
-            <ZapIcon className="w-8 h-8 text-red-600 animate-flicker" />
-            <h1 className="text-5xl md:text-7xl font-bold tracking-widest uppercase text-red-600 glow-text"
-              style={{
-                fontFamily: "'Courier New', monospace",
-                textShadow: '0 0 10px rgba(220, 38, 38, 0.8), 0 0 20px rgba(220, 38, 38, 0.6), 0 0 30px rgba(220, 38, 38, 0.4), 0 0 40px rgba(220, 38, 38, 0.2)',
-                letterSpacing: '0.3em'
-              }}>
-              The Upside Down
+            <h1 className="text-5xl md:text-7xl font-bold tracking-widest uppercase text-red-600 glow-text stranger-things-font">
+              The Upside Right
             </h1>
-            <ZapIcon className="w-8 h-8 text-red-600 animate-flicker" />
           </div>
 
           <div className="mb-12">
-            <div className="inline-block border-2 border-red-700/50 bg-black/60 backdrop-blur-sm px-8 py-4 rounded-lg glow-border">
-              <p className="text-red-400/80 text-lg md:text-xl tracking-wider uppercase mb-2"
-                style={{ fontFamily: "'Courier New', monospace" }}>
-                Gateway Opens In
+            <div className="inline-block bg-black/60 backdrop-blur-sm px-8 py-4 rounded-lg">
+              <p className="text-white text-lg md:text-xl tracking-wider uppercase mb-2 stranger-things-font">
+                Mind Flayer is coming in
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-4 gap-4 md:gap-8 max-w-4xl mx-auto mb-12">
+          <div className="grid grid-cols-3 gap-4 md:gap-8 max-w-4xl mx-auto mb-12">
             {[
-              { label: 'Days', value: timeLeft.days },
               { label: 'Hours', value: timeLeft.hours },
               { label: 'Minutes', value: timeLeft.minutes },
               { label: 'Seconds', value: timeLeft.seconds },
@@ -104,16 +96,11 @@ export default function Home() {
                 className="relative"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="bg-black/80 border-2 border-red-700/60 rounded-lg p-4 md:p-8 glow-border-strong backdrop-blur-sm transform hover:scale-105 transition-transform">
-                  <div className="text-4xl md:text-7xl font-bold text-red-500 mb-2 tabular-nums glow-text-strong"
-                    style={{
-                      fontFamily: "'Courier New', monospace",
-                      textShadow: '0 0 15px rgba(239, 68, 68, 0.9), 0 0 30px rgba(239, 68, 68, 0.6), 0 0 45px rgba(239, 68, 68, 0.3)'
-                    }}>
+                <div className="bg-black/80 rounded-lg p-4 md:p-8 backdrop-blur-sm transform hover:scale-105 transition-transform">
+                  <div className="text-4xl md:text-7xl font-bold text-red-500 mb-2 tabular-nums glow-text-strong stranger-things-font">
                     {String(item.value).padStart(2, '0')}
                   </div>
-                  <div className="text-xs md:text-sm text-red-400/70 uppercase tracking-widest"
-                    style={{ fontFamily: "'Courier New', monospace" }}>
+                  <div className="text-xs md:text-sm text-red-400/70 uppercase tracking-widest stranger-things-font">
                     {item.label}
                   </div>
                 </div>
@@ -139,7 +126,11 @@ export default function Home() {
         </div>
       </div>
 
+      <div className="absolute bottom-5 right-5">
+        <Link href="https://netflix.com" target="_blank" className="block p-3 bg-red-900/50 backdrop-blur-sm rounded-lg text-white text-xs md:text-sm tracking-wider">Powered by <span className="text-red-400">Netflix</span></Link>
+      </div>
+
       <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-red-950/30 to-transparent pointer-events-none"></div>
-    </div>
+    </div >
   );
 }
