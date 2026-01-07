@@ -75,7 +75,7 @@ export default function Home() {
         <div className={`transition-opacity duration-100 ${flicker ? 'opacity-50' : 'opacity-100'}`}>
           <div className="flex items-center justify-center gap-3 mb-8 animate-pulse-slow">
             <h1 className="text-5xl md:text-7xl font-bold tracking-widest uppercase text-red-600 glow-text stranger-things-font">
-              The Upside Right
+              The Rightside Up
             </h1>
           </div>
 
