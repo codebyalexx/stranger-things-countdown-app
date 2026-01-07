@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Stranger Things Countdown",
-  description: "Countdown to the release of Stranger Things 4",
+  title: "Stranger Things 5 Final Countdown",
+  description: "Countdown to the release of Stranger Things 5 Final Act",
 };
 
 export default function RootLayout({
