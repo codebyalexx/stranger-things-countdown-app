@@ -56,7 +56,7 @@ export default function SoundManager({ timeLeft, globalVolume }: SoundManagerPro
             }
 
             // Schedule next
-            const nextDelay = Math.random() * 120000 + 60000; // 60s to 120s
+            const nextDelay = Math.random() * 120000 * 5 + 60000; // 60s to 10 mins
             timeoutId = setTimeout(playRandomSound, nextDelay);
         };
 

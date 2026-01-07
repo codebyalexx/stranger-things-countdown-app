@@ -2,7 +2,16 @@
 
 import React from "react";
 
-export default function UpsideDownAtmosphere() {
+interface UpsideDownAtmosphereProps {
+    timeLeft: {
+        days: number;
+        hours: number;
+        minutes: number;
+        seconds: number;
+    };
+}
+
+export default function UpsideDownAtmosphere({ timeLeft }: UpsideDownAtmosphereProps) {
     return (
         <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
             {/* Base Dark Atmosphere */}

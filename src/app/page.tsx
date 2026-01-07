@@ -23,7 +23,7 @@ export default function Home() {
 
   useEffect(() => {
     //const targetDate = new Date('2026-01-08T01:00:00Z');
-    const targetDate = new Date('2026-01-07T20:56:00Z');
+    const targetDate = new Date('2026-01-07T21:56:00Z');
 
     const updateCountdown = () => {
       const now = new Date().getTime();
@@ -60,8 +60,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-black relative overflow-hidden flex items-center justify-center">
-      <LightningStorm />
-      <UpsideDownAtmosphere />
+      <LightningStorm timeLeft={timeLeft} />
+      <UpsideDownAtmosphere timeLeft={timeLeft} />
       <SoundManager timeLeft={timeLeft} globalVolume={volume} />
       <EndingSequence trigger={isEnded} globalVolume={volume} />
       <VolumeControl volume={volume} onVolumeChange={setVolume} />

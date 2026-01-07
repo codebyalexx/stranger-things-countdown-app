@@ -2,9 +2,24 @@
 
 import React, { useEffect, useRef, useState } from "react";
 
-export default function LightningStorm() {
+interface LightningStormProps {
+    timeLeft: {
+        days: number;
+        hours: number;
+        minutes: number;
+        seconds: number;
+    };
+}
+
+export default function LightningStorm({ timeLeft }: LightningStormProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [isStriking, setIsStriking] = useState(false);
+
+    // Store timeLeft in ref to access inside closure without re-running effect
+    const timeLeftRef = useRef(timeLeft);
+    useEffect(() => {
+        timeLeftRef.current = timeLeft;
+    }, [timeLeft]);
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -142,8 +157,19 @@ export default function LightningStorm() {
 
             animateStrike();
 
-            // Schedule next strike
-            const nextStrikeDelay = Math.random() * 8000 + 4000; // 4 to 12 seconds
+            // Calculate multiplier based on time left
+            const current = timeLeftRef.current;
+            const totalMinutes = (current.days * 24 * 60) + (current.hours * 60) + current.minutes;
+            let multiplier = 1;
+            if (totalMinutes < 5) multiplier = 3.0;
+            else if (totalMinutes < 60) multiplier = 2.0;
+            else if (totalMinutes < 120) multiplier = 1.5;
+
+            // Schedule next strike: shorter delay as multiplier increases
+            const baseMin = 4000;
+            const baseVar = 8000;
+            const nextStrikeDelay = (Math.random() * baseVar + baseMin) / multiplier;
+
             strikeTimeout = setTimeout(triggerStrike, nextStrikeDelay);
         };
 
