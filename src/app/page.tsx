@@ -1,11 +1,13 @@
 "use client"
 
-import { ZapIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import LightningStorm from "@/components/LightningStorm";
 import UpsideDownAtmosphere from "@/components/UpsideDownAtmosphere";
+import VolumeControl from "@/components/VolumeControl";
+import SoundManager from "@/components/SoundManager";
+import EndingSequence from "@/components/EndingSequence";
 
 export default function Home() {
   const [timeLeft, setTimeLeft] = useState({
@@ -16,9 +18,12 @@ export default function Home() {
   });
 
   const [flicker, setFlicker] = useState(false);
+  const [isEnded, setIsEnded] = useState(false);
+  const [volume, setVolume] = useState(0.5); // Default 50%
 
   useEffect(() => {
-    const targetDate = new Date('2026-01-08T01:00:00Z');
+    //const targetDate = new Date('2026-01-08T01:00:00Z');
+    const targetDate = new Date('2026-01-07T20:56:00Z');
 
     const updateCountdown = () => {
       const now = new Date().getTime();
@@ -31,6 +36,10 @@ export default function Home() {
           minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
           seconds: Math.floor((distance % (1000 * 60)) / 1000),
         });
+        setIsEnded(false);
+      } else {
+        setIsEnded(true);
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
       }
     };
 
@@ -53,6 +62,9 @@ export default function Home() {
     <div className="min-h-screen bg-black relative overflow-hidden flex items-center justify-center">
       <LightningStorm />
       <UpsideDownAtmosphere />
+      <SoundManager timeLeft={timeLeft} globalVolume={volume} />
+      <EndingSequence trigger={isEnded} globalVolume={volume} />
+      <VolumeControl volume={volume} onVolumeChange={setVolume} />
 
       <div className="relative z-10 text-center px-4">
         <div className={`transition-opacity duration-100 ${flicker ? 'opacity-50' : 'opacity-100'}`}>
