@@ -1,12 +1,12 @@
 ### BUILD
 
-FROM node:20-alpine AS builder
+FROM node:22-alpine AS builder
 
 WORKDIR /app
 
 RUN apk add --no-cache libc6-compat openssl
 
-RUN npm install -g pnpm@10.11.0
+RUN npm install -g pnpm@10.17.1
 
 COPY package.json pnpm-lock.yaml ./
 
@@ -18,13 +18,13 @@ RUN pnpm build
 
 ### PRODUCTION
 
-FROM node:20-alpine AS runner
+FROM node:22-alpine AS runner
 
 WORKDIR /app
 
 RUN apk add --no-cache libc6-compat
 
-RUN npm install -g pnpm@10.11.0
+RUN npm install -g pnpm@10.17.1
 
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next ./.next
