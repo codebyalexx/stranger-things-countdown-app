@@ -5,9 +5,9 @@ import { useEffect, useState } from "react";
 
 import LightningStorm from "@/components/LightningStorm";
 import UpsideDownAtmosphere from "@/components/UpsideDownAtmosphere";
-import VolumeControl from "@/components/VolumeControl";
 import SoundManager from "@/components/SoundManager";
 import EndingSequence from "@/components/EndingSequence";
+import VolumeControl from "@/components/VolumeControl";
 
 export default function Home() {
   const [timeLeft, setTimeLeft] = useState({
@@ -22,8 +22,8 @@ export default function Home() {
   const [volume, setVolume] = useState(0.5); // Default 50%
 
   useEffect(() => {
-    //const targetDate = new Date('2026-01-08T01:00:00Z');
-    const targetDate = new Date('2026-01-07T21:56:00Z');
+    const targetDate = new Date('2026-01-08T01:00:00Z');
+    //const targetDate = new Date('2026-01-07T21:10:00Z');
 
     const updateCountdown = () => {
       const now = new Date().getTime();
@@ -58,8 +58,13 @@ export default function Home() {
     return () => clearInterval(flickerInterval);
   }, []);
 
+  // Determine if we should shake (last 3 mins)
+  const totalSeconds = timeLeft.days * 86400 + timeLeft.hours * 3600 + timeLeft.minutes * 60 + timeLeft.seconds;
+  const isFracturing = totalSeconds <= 180 && totalSeconds > 0;
+
   return (
-    <div className="min-h-screen bg-black relative overflow-hidden flex items-center justify-center">
+    <div className={`min-h-screen bg-black relative overflow-hidden flex items-center justify-center ${isFracturing ? 'fracture-shake' : ''}`}>
+      {/*<RealityFracture timeLeft={timeLeft} />*/}
       <LightningStorm timeLeft={timeLeft} />
       <UpsideDownAtmosphere timeLeft={timeLeft} />
       <SoundManager timeLeft={timeLeft} globalVolume={volume} />
