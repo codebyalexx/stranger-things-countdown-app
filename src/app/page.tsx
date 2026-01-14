@@ -89,6 +89,7 @@ export default function Home() {
 
           <div className="grid grid-cols-3 gap-4 md:gap-8 max-w-4xl mx-auto mb-12">
             {[
+              { label: 'Days', value: timeLeft.days },
               { label: 'Hours', value: timeLeft.hours },
               { label: 'Minutes', value: timeLeft.minutes },
               { label: 'Seconds', value: timeLeft.seconds },
