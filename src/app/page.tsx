@@ -22,7 +22,7 @@ export default function Home() {
   const [volume, setVolume] = useState(0.5); // Default 50%
 
   useEffect(() => {
-    const targetDate = new Date('2026-01-08T01:00:00Z');
+    const targetDate = new Date('2026-02-04T15:00:00Z');
     //const targetDate = new Date('2026-01-07T21:10:00Z');
 
     const updateCountdown = () => {
